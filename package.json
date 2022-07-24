@@ -1,0 +1,15 @@
+{
+  "name": "sl-issue-tracking-back-end",
+  "version": "0.0.1",
+  "description": "an app that tracks issues with stockholms lokaltrafit",
+  "main": "dist/app.js",
+  "author": "eddieenglund <eddie.englund@protonmail.com>",
+  "license": "GPL3",
+  "private": true,
+  "dependencies": {
+    "@mikro-orm/core": "^5.2.3",
+    "@mikro-orm/postgresql": "^5.2.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  }
+}
