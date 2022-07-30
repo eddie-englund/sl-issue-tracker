@@ -1,0 +1,21 @@
+version: '3.9'
+networks:
+  sl-issue-tracker-databases:
+    external: true
+services:
+  sl-issue-tracker:
+    env_file:
+      - './.env'
+    container_name: 'sl-issue-tracker-backend'
+    volumes:
+      - sl-issue-tracker_data:/app/store
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: runner
+    ports:
+      - 1928:1928
+    networks:
+      - sl-issue-tracker-databases
+volumes:
+  sl-issue-tracker_data:
