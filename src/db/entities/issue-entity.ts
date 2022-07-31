@@ -6,9 +6,9 @@ interface Vehicle {
 }
 
 @Entity()
-export class Fault extends BaseEntity {
+export class Issue extends BaseEntity {
   @Property()
-  faultDescription!: string;
+  description!: string;
 
   @Property()
   vehicle!: Vehicle["types"]

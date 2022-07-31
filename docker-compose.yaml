@@ -1,7 +1,4 @@
 version: '3.9'
-networks:
-  sl-issue-tracker-databases:
-    external: true
 services:
   sl-issue-tracker:
     env_file:
@@ -15,7 +12,22 @@ services:
       target: runner
     ports:
       - 1928:1928
-    networks:
-      - sl-issue-tracker-databases
+    links:
+      - "postgres: postgres"
+  postgres:
+    image: postgres:14.4-alpine
+    container_name: 'postgres'
+    volumes:
+      - postgres_data:/postgres/data/db
+    env_file:
+      - './.env'
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: titus # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: GARBAGE_PaSSWORD1 # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: sl # The PostgreSQL default database (automatically created at first launch
 volumes:
   sl-issue-tracker_data:
+  postgres_data:
