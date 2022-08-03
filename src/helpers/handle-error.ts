@@ -1,6 +1,9 @@
-import { Response } from 'express';
+interface ReturnError {
+  success: false;
+  error: string;
+}
 
-export const handleError = (err: string, res: Response) => {
-  console.error(`${Date.now().toLocaleString}: Error => ${err}`)
-  return res.status(500).send({ success: false, error: err })
+export const handleError = (err: string): ReturnError => {
+  console.error(`${Date.now().toLocaleString}: Received unexpected error => ${err}`)
+  return { success: false, error: err }
 }

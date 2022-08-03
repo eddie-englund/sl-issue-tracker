@@ -32,16 +32,13 @@ export const initPostgres = async (): Promise<DI> => {
 
   globalOrm = {
     orm,
-    em: orm.em,
-    userRepo: orm.em.getRepository(User),
-    issueRepo: orm.em.getRepository(Issue)
+    em: orm.em.fork(),
+    userRepo: orm.em.fork().getRepository(User),
+    issueRepo: orm.em.fork().getRepository(Issue)
   }
 
   return globalOrm
 }
 
 
-export const getDI = (): DI => {
-  if (!globalOrm) throw new Error("No postgres ORM defined")
-  return globalOrm
-};
+export const getDI = (): DI => globalOrm
