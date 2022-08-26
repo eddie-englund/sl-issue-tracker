@@ -2,15 +2,25 @@ import { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 
 const issueCreateSchema = z.object({
+  username: z
+    .string()
+    .trim()
+    .min(6)
+    .max(256),
+  password: z
+    .string()
+    .trim()
+    .min(6)
+    .max(256),
   description: z
     .string()
     .trim()
     .min(10)
     .max(512),
-  password: z
+  vehicle: z
     .string()
     .trim()
-    .min(6)
+    .min(1)
     .max(512)
 })
 

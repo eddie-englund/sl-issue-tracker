@@ -2,6 +2,16 @@ import { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 
 const userCreateSchema = z.object({
+  adminUsername: z
+    .string()
+    .trim()
+    .min(6)
+    .max(256),
+  adminPassword: z
+    .string()
+    .trim()
+    .min(6)
+    .max(256),
   username: z
     .string()
     .trim()

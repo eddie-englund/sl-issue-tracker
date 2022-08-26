@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  pgweb:
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    env_file:
+      - '../.env'
+    depends_on:
+      - postgres
+  sl-issue-tracker:
+    stdin_open: true
+    tty: true
+    env_file:
+      - '../.env'
+    volumes:
+      - ../:/app
+    build:
+      context: ../
+      dockerfile: ./docker/dev.dockerfile
+    ports:
+      - 1928:1928
+    links:
+      - "postgres:postgres"
+  postgres:
+    image: postgres:14.4-alpine
+    volumes:
+      - postgres_data:/postgres/data/db
+    env_file:
+      - '../.env'
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: titus # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: GARBAGE_PaSSWORD1 # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: sl # The PostgreSQL default database (automatically created at first launch
+volumes:
+  sl-issue-tracker_data:
+  postgres_data:

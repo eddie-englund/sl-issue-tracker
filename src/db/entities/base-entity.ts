@@ -2,16 +2,16 @@ import {
   Entity,
   Property,
   PrimaryKey,
-  UuidType,
-  DateTimeType
+  DateTimeType,
+  UuidType
 } from '@mikro-orm/core';
 
 @Entity()
 export class BaseEntity  {
 
-  @PrimaryKey()
-  id!: UuidType;
+  @PrimaryKey({ type: UuidType })
+  id!: String;
 
-  @Property()
-  created!: DateTimeType;
+  @Property({ type: DateTimeType })
+  created!: Date;
 }

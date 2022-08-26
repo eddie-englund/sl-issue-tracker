@@ -8,14 +8,7 @@ import { router } from './routes/router';
 export const initApp = async (app: Application): Promise<void> => {
   app.use(json())
   app.use(helmet())
-  app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin) return callback(new Error('Origin is missing?!'))
-        if (process.env.CORS_ORIGIN?.includes(origin)) callback(null, true)
-        else callback(new Error(`Origin ${origin} is not whitelisted.`))
-      }
-    })
-  )
+  app.use(cors())
   // Register routes
   router(app)
 
