@@ -25,7 +25,7 @@ services:
   postgres:
     image: postgres:14.4-alpine
     volumes:
-      - postgres_data:/postgres/data/db
+      - postgres_data:/var/lib/postgresql/data/pgdata
     env_file:
       - '../.env'
     restart: unless-stopped

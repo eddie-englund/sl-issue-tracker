@@ -2,12 +2,12 @@ import { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 
 const issueCreateSchema = z.object({
-  username: z
+  adminUsername: z
     .string()
     .trim()
     .min(6)
     .max(256),
-  password: z
+  adminPassword: z
     .string()
     .trim()
     .min(6)

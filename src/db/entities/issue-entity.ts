@@ -1,9 +1,7 @@
 import { Entity, Property } from '@mikro-orm/core';
 import { BaseEntity } from './base-entity';
 
-interface Vehicle {
-  types: "buss" | "train" | "tram"
-}
+type Vehicle = "buss" | "train" | "tram" | "buss-station" | "train-station" | "tram-station"
 
 @Entity()
 export class Issue extends BaseEntity {
@@ -11,5 +9,5 @@ export class Issue extends BaseEntity {
   description!: string;
 
   @Property()
-  vehicle!: Vehicle["types"]
+  vehicle!: Vehicle
 }
