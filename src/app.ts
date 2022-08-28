@@ -8,7 +8,7 @@ import { router } from './routes/router';
 export const initApp = async (app: Application): Promise<void> => {
   app.use(json())
   app.use(helmet())
-  app.use(cors())
+  app.use(cors({ origin: process.env.CORS_ORIGINS.split(',') }))
   // Register routes
   router(app)
 
