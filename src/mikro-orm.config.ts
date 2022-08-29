@@ -9,12 +9,12 @@ dotenv.config();
 const config: Options<PostgreSqlDriver> = {
   entities: ['./dist/db/entities'], // path to our JS entities (dist), relative to `baseDir`
     entitiesTs: ['./src/db/entities'], // path to our TS entities (src), relative to `baseDir`,
-    dbName: process.env.DB_NAME,
+    dbName: process.env.POSTGRES_NAME,
     type: 'postgresql',
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    host: 'postgres',
-    port: 5432,
+    user: process.env.POSTGRES_USERNAME,
+    password: process.env.POSTGRES_PASSWORD,
+    host: process.env.POSTGRES_HOST,
+    port: parseInt(process.env.POSTGRES_PORT),
     forceUtcTimezone: true,
     debug: true,
     driver: PostgreSqlDriver,
