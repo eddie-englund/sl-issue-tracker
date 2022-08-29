@@ -11,7 +11,7 @@ const config: Options<PostgreSqlDriver> = {
     entitiesTs: ['./src/db/entities'], // path to our TS entities (src), relative to `baseDir`,
     dbName: process.env.POSTGRES_NAME,
     type: 'postgresql',
-    user: process.env.POSTGRES_USERNAME,
+    user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     host: process.env.POSTGRES_HOST,
     port: parseInt(process.env.POSTGRES_PORT),
