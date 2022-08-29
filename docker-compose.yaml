@@ -17,7 +17,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik"
-      - "traefik.http.routers.paste.rule=Host(`sl.mingodesk.com`)"
+      - "traefik.http.routers.paste.rule=Host(`api.sl.mingodesk.com`)"
       - "traefik.http.routers.paste.tls.certResolver=letsencrypt"
   postgres:
     image: postgres:14.4-alpine
