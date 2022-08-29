@@ -13,7 +13,12 @@ services:
     ports:
       - 1928:1928
     links:
-      - "postgres: postgres"
+      - "postgres:postgres"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.paste.rule=Host(`sl.mingodesk.com`)"
+      - "traefik.http.routers.paste.tls.certResolver=letsencrypt-tls"
   postgres:
     image: postgres:14.4-alpine
     container_name: 'postgres'
@@ -24,10 +29,6 @@ services:
     restart: unless-stopped
     ports:
       - 5432:5432
-    environment:
-      POSTGRES_USER: # Set a new user for prod (MUST MATCH WITH THE ONE IN THE .env FILE)
-      POSTGRES_PASSWORD: # Set a new password for prod (MUST MATCH WITH THE ONE IN THE .env FILE)
-      POSTGRES_DB: sl # The PostgreSQL default database (automatically created at first launch
 volumes:
   sl-issue-tracker_data:
   postgres_data:
