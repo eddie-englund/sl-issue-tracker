@@ -1,6 +1,6 @@
 version: '3.9'
 networks:
-  traefik:
+  traefik_proxy:
     external: true
 services:
   sl-issue-tracker:
@@ -19,11 +19,11 @@ services:
       - "postgres:postgres"
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
+      - "traefik.docker.network=traefik_proxy"
       - "traefik.http.routers.paste.rule=Host(`api.sl.mingodesk.com`)"
       - "traefik.http.routers.paste.tls.certResolver=letsencrypt"
     networks:
-      - traefik
+      - traefik_proxy
       - default
   postgres:
     image: postgres:14.4-alpine
