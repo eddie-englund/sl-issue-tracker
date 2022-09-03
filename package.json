@@ -9,7 +9,7 @@
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon --exec ts-node --files src/index.ts",
     "deploy": "node ./dist/index.js",
     "build": "tsc --project tsconfig.json"
   },
