@@ -21,7 +21,8 @@ const issueCreateSchema = z.object({
     .string()
     .trim()
     .min(1)
-    .max(512)
+    .max(512),
+  created: z.date()
 })
 
 export type IssueCreateSchema = z.infer<typeof issueCreateSchema>

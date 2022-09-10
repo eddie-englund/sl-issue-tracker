@@ -11,11 +11,11 @@ export const createIssue = async (req: Request, res: Response) => {
       id: uuid(),
       description: req.body.description,
       vehicle: req.body.vehicle,
-      created: new Date()
+      created: req.body.created
     });
 
     await DI.issueRepo
-    .persist(newIssue)
+      .persist(newIssue)
       .flush()
 
     return res.status(201).send({ success: true });
